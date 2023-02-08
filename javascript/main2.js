@@ -31,7 +31,7 @@ function checkPrice() {
 function checkStock() {
     let checkStock = arrayDriedFruits.filter(checkStock => checkStock.stock === true);
     for (let i = 0; i < checkStock.length; i++) {
-        alert("We have in stock:\n\n" + checkStock[i].name +"\n"+ checkStock[i+1].name) ;
+        alert("We have in stock:\n\n" + checkStock[i].name) ;
     };
 };
 
