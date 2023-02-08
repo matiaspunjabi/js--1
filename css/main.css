@@ -1,0 +1,30 @@
+.list__h1 {
+    text-align: center;
+    margin: auto;
+    margin-top: 5rem;
+    font-size: 3rem;
+}
+
+.list__container{    
+    width: 50%;
+    margin: auto;
+}
+
+.list__form{
+    margin: auto;
+    margin-top: 5rem;
+    width: 20rem;
+}
+
+.list__input{
+    height: 2rem;
+    border: none;
+}
+
+.list__btn{
+    height: 2rem;
+}
+
+.todolist__container{
+
+}
