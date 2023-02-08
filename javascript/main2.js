@@ -31,7 +31,7 @@ function checkPrice() {
 function checkStock() {
     let checkStock = arrayDriedFruits.filter(checkStock => checkStock.stock === true);
     for (let i = 0; i < checkStock.length; i++) {
-        alert("We have in stock:\n\n" + checkStock[i].name) ;
+        alert("We have in stock:\n\n" + checkStock[i].name);
     };
 };
 
@@ -53,8 +53,7 @@ function sendQuery() {
 
 function purchase() {
     let arrayPurchase = [];
-    for (let i = 0; i < 100
-        ; i++) {
+    for (let i = 0; i < 100; i++) {
         class cartProduct {
             constructor(name, price, amount) {
                 this.name = name;
