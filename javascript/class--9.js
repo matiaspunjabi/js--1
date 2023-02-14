@@ -2,7 +2,7 @@
 
 // const h1 = document.querySelector(".list__h1");
 
-// h1.innerText = "go to show input text from console ";
+// h1.innerText = "showing input text from console ";
 
 /* --Adding on the html "sections" created on JS with the input text-- */
 
@@ -15,11 +15,11 @@
 
 //     const section = document.createElement("p");
 
-//     section.innerText = `${input.value}`;
+// //     section.innerText = `${input.value}`;
 
-//     div.appendChild(section);
-//     form.reset();
-// })
+// //     div.appendChild(section);
+// //     form.reset();
+// // })
 
 class Products {
     constructor(name, price, amount){
@@ -30,45 +30,50 @@ class Products {
 }
 
 const nuts = new Products("nuts", 200, 100);
-// const peanuts = new Products("peanuts", 120, 100);
-// const almonds = new Products("almonds", 250, 100);
-// const chestnuts = new Products("chestnuts", 350, 100);
+const peanuts = new Products("peanuts", 120, 100);
+const almonds = new Products("almonds", 250, 100);
+const chestnuts = new Products("chestnuts", 350, 100);
 
-const arrayProducts = [nuts];
+const arrayProducts = [nuts,peanuts,almonds,chestnuts];
 
-const container = document.querySelector(".container");
+const form = document.querySelector(".form");
 
 arrayProducts.forEach(product => {
     const div = document.createElement("div");
-    div.innerHTML = `   <form class="product__form" action="">
-                            <label for="${product.name}">${product.name} $${product.price}/100gr</label>
-                            <input class="product__input" type="text" id="${product.name}">
-                            <button>add</button>
-                        </form>`;
-    container.appendChild(div);
+    div.innerHTML = `<label class="label__${product.name}">${product.name} $${product.price}/100</label>
+                    <input class="input__${product.name} type="number""></input>`
+    form.appendChild(div);
+
+    const inputNuts = document.querySelector(".input__nuts");
+    const inputPeanuts = document.querySelector(".input__peanuts");
+    const inputAlmonds = document.querySelector(".input__almonds");
+    const inputChestnuts = document.querySelector(".input__chestnuts");
     
-}); 
 
-const form = document.querySelector(".product__form");
-const input = document.querySelector(".product__input");
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const amountProduct = input.value*arrayProducts.price;
-    const sectionTotal = document.createElement("p");
-    sectionTotal.innerText = `$${amountProduct}`;
-    container.appendChild(sectionTotal);
-    form.reset();
-}); 
-
-
-
-
+    form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const finalPriceNuts = inputNuts.value * 200/100;
+        const finalPricePeanuts = inputPeanuts.value * 120/100;
+        const finalPriceAlmonds = inputAlmonds.value * 250/100;
+        const finalPriceChestnus = inputChestnuts.value * 350/100;
+        const finalTotal = finalPriceNuts + finalPricePeanuts + finalPriceAlmonds + finalPriceChestnus;
+        const section = document.createElement("span");
+        section.innerText = `Your purchase is: $${finalTotal}`;
+        form.appendChild(section);
+        form.reset();
+    })
+})
 
 
 
 
 
 
+
+
+
+
+                    
 
 
 
