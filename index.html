@@ -6,13 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mp3 player | linkin park</title>
     <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script defer src="./javascript/main.js"></script>
     
     
 </head>
 <body>
     <h1>mp3 player | linkin park</h1>
-    <button class="play"> play song</button>
-    <button class="pause"> pause song</button>
+    <audio id="audio" src=""></audio>
+    <div class="container">
+        <img class="img" src="" alt="">
+        <h3 class="title">title track</h3>
+        <p class="album">album track</p>
+        <div class="btnContainer">
+            <i id="backBtn" class="bi bi-skip-backward"></i>    
+            <i id= "playBtn"class="bi bi-play"></i>
+            <i id="pauseBtn" class="bi bi-pause"></i>
+            <i id="forwBtn" class="bi bi-skip-forward"></i>    
+        </div>
+    </div>
 </body>     
 </html>
