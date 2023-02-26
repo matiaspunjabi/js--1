@@ -48,17 +48,28 @@ const pauseBtn = document.getElementById("pauseBtn");
 const forwTrackBtn = document.getElementById("forwBtn");
 
 const loadTrack = () =>{
-    trackImg.src = playList[indexSong+3].img;
-    trackTitle.innerText = playList[indexSong+3].title;
-    trackAlbum.innerText = playList[indexSong+3].album;
-    currentTrack.src = playList[indexSong+3].mp3;
+    trackImg.src = playList[indexSong].img;
+    trackTitle.innerText = playList[indexSong].title;
+    trackAlbum.innerText = playList[indexSong].album;
+    currentTrack.src = playList[indexSong].mp3;
 }
+loadTrack()
                     
 playBtn.addEventListener("click",() =>{
-    loadTrack()
     currentTrack.play()
-
 })
 
+pauseBtn.addEventListener("click",()=>{
+    currentTrack.pause()
+})
 
+forwTrackBtn.addEventListener("click", ()=>{
+    loadTrack(indexSong++)
+    currentTrack.play()
+})
+
+backTrackBtn.addEventListener("click", ()=>{
+    loadTrack(indexSong--)
+    currentTrack.play()
+})
 
