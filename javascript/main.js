@@ -32,21 +32,19 @@ const song6 = new Songs("The Catalyst", "A Thousands Suns", "Linkin Park", 336, 
 
 const playList = [song1,song2,song3,song4,song5,song6];
 
-let indexSong = 0;
-
 let currentTrack = document.getElementById("audio");
-
-const container = document.querySelector(".container");
 let trackImg = document.querySelector(".img");
 let trackTitle = document.querySelector(".title");
 let trackAlbum = document.querySelector(".album");
 
+const container = document.querySelector(".container");
 const btnContainer = document.querySelector(".btnContainer");
 const backTrackBtn = document.getElementById("backBtn");
-const playBtn = document.getElementById("playBtn");
-const pauseBtn = document.getElementById("pauseBtn");
+const playPauseBtn = document.getElementById("playPauseBtn");
 const forwTrackBtn = document.getElementById("forwBtn");
 
+let indexSong = 0;
+let isPLaying = false;
 
 const loadTrack = () => {
     trackImg.src = playList[indexSong].img;
@@ -55,27 +53,36 @@ const loadTrack = () => {
     currentTrack.src = playList[indexSong].mp3;
 }
 
-playBtn.addEventListener("click",() =>{
-    currentTrack.play()
-    console.log(indexSong)
-})
+loadTrack()
 
-pauseBtn.addEventListener("click",()=>{
-    currentTrack.pause()
+function playTrack() {
+    isPLaying = true
+    playPauseBtn.className="bi bi-pause";
+    currentTrack.play();
+}
+
+function pauseTrack() {
+    isPLaying = false
+    playPauseBtn.className = "bi bi-play"
+    currentTrack.pause();
+}
+
+
+playPauseBtn.addEventListener("click",() =>{
+    isPLaying ? pauseTrack() : playTrack();
+
 })
 
 forwTrackBtn.addEventListener("click", ()=>{
     indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++)
     currentTrack.play()
-    console.log(indexSong)
 })
 
 backTrackBtn.addEventListener("click", ()=>{
     indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--) 
     currentTrack.play()
-    console.log(indexSong)
 })
 
-loadTrack()
+
 
 
