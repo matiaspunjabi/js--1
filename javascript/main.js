@@ -1,7 +1,9 @@
 //*******************  Music player *******************
 
 //[x] play a mp3 file from navigator.
-//[] functional next and prev song.
+//[x] functional next and prev song.
+//[x] functional play-pause btn toggle.
+//[] Play next song after current song ends.
 //[] functional shuffle and repeat buttons.
 //[] use localstorage to save current audio play.
 //[] add and remove songs to likesongs playlist.
@@ -52,35 +54,32 @@ const loadTrack = () => {
     trackAlbum.innerText = playList[indexSong].album;
     currentTrack.src = playList[indexSong].mp3;
 }
-
 loadTrack()
 
-function playTrack() {
+const playTrack = () => {
     isPLaying = true
     playPauseBtn.className="bi bi-pause";
     currentTrack.play();
 }
 
-function pauseTrack() {
+const pauseTrack = () => {
     isPLaying = false
     playPauseBtn.className = "bi bi-play"
     currentTrack.pause();
 }
 
-
 playPauseBtn.addEventListener("click",() =>{
     isPLaying ? pauseTrack() : playTrack();
-
 })
 
 forwTrackBtn.addEventListener("click", ()=>{
     indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++)
-    currentTrack.play()
+    playTrack();
 })
 
 backTrackBtn.addEventListener("click", ()=>{
     indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--) 
-    currentTrack.play()
+    playTrack();
 })
 
 
