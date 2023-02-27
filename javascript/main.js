@@ -48,7 +48,6 @@ const forwTrackBtn = document.getElementById("forwBtn");
 let indexSong = 0;
 let isPLaying = false;
 
-indexSong = localStorage.getItem("lastPlaying");
 
 const loadTrack = () => {
     trackImg.src = playList[indexSong].img;
@@ -59,6 +58,7 @@ const loadTrack = () => {
     localStorage.setItem("lastPlaying", playingIndex);
 }
 
+indexSong = localStorage.getItem("lastPlaying");
 loadTrack()
 
 
