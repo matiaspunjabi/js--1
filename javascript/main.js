@@ -3,13 +3,13 @@
 //[x] play a mp3 file from navigator.
 //[x] functional next and prev song.
 //[x] functional play-pause btn toggle.
-//[] Play next song after current song ends.
+//[x] Play next song after current song ends.
+//[x] use localstorage to save current audio play.
 //[] functional shuffle and repeat buttons.
-//[] use localstorage to save current audio play.
 //[] add and remove songs to likesongs playlist.
 //[] create a personal playlist.
 //[] add own mp3 files to music player.
-//[] css responsive, favicon customize asset
+//[] css responsive, favicon customize asset.
 
 
 //-------------------------------------------- 
@@ -48,13 +48,24 @@ const forwTrackBtn = document.getElementById("forwBtn");
 let indexSong = 0;
 let isPLaying = false;
 
+indexSong = localStorage.getItem("lastPlaying");
+
 const loadTrack = () => {
     trackImg.src = playList[indexSong].img;
     trackTitle.innerText = playList[indexSong].title;
     trackAlbum.innerText = playList[indexSong].album;
     currentTrack.src = playList[indexSong].mp3;
+    let playingIndex = indexSong;
+    localStorage.setItem("lastPlaying", playingIndex);
 }
+
 loadTrack()
+
+
+currentTrack.addEventListener("ended", ()=>{
+    nextTrack();
+    currentTrack.play();        
+})
 
 const playTrack = () => {
     isPLaying = true
@@ -72,14 +83,22 @@ playPauseBtn.addEventListener("click",() =>{
     isPLaying ? pauseTrack() : playTrack();
 })
 
-forwTrackBtn.addEventListener("click", ()=>{
+const nextTrack = () => {
     indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++)
+}
+
+const prevTrack = () => {
+    indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--) 
+}
+
+forwTrackBtn.addEventListener("click", () => {
+    nextTrack();
     playTrack();
 })
 
-backTrackBtn.addEventListener("click", ()=>{
-    indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--) 
-    playTrack();
+backTrackBtn.addEventListener("click", () => {
+    prevTrack();
+    playTrack();    
 })
 
 
