@@ -45,27 +45,27 @@ const backTrackBtn = document.getElementById("backBtn");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const forwTrackBtn = document.getElementById("forwBtn");
 
-let indexSong = 0;
 let isPLaying = false;
+let indexSong = 0;
 
-
-const loadTrack = () => {
-    trackImg.src = playList[indexSong].img;
-    trackTitle.innerText = playList[indexSong].title;
-    trackAlbum.innerText = playList[indexSong].album;
+const loadTrack = () => {    
+    trackImg.src = playList[indexSong].img; 
+    trackTitle.innerText = playList[indexSong].title;    
+    trackAlbum.innerText = playList[indexSong].album;   
     currentTrack.src = playList[indexSong].mp3;
-    let playingIndex = indexSong;
-    localStorage.setItem("lastPlaying", playingIndex);
+    localStorage.setItem("lastPlaying", indexSong)    
 }
 
-indexSong = localStorage.getItem("lastPlaying");
-loadTrack()
+const loadLastTrack = () => {
+    indexSong = localStorage.getItem("lastPlaying")
+    loadTrack();
+}
 
-
-currentTrack.addEventListener("ended", ()=>{
-    nextTrack();
-    currentTrack.play();        
-})
+if(localStorage.getItem("lastPlaying") > 0){
+    loadLastTrack()
+} else {
+    loadTrack()
+}
 
 const playTrack = () => {
     isPLaying = true
@@ -79,10 +79,6 @@ const pauseTrack = () => {
     currentTrack.pause();
 }
 
-playPauseBtn.addEventListener("click",() =>{
-    isPLaying ? pauseTrack() : playTrack();
-})
-
 const nextTrack = () => {
     indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++)
 }
@@ -90,6 +86,16 @@ const nextTrack = () => {
 const prevTrack = () => {
     indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--) 
 }
+
+currentTrack.addEventListener("ended", ()=>{
+    nextTrack();
+    currentTrack.play();        
+})
+
+playPauseBtn.addEventListener("click",() =>{
+    isPLaying ? pauseTrack() : playTrack();
+})
+
 
 forwTrackBtn.addEventListener("click", () => {
     nextTrack();
