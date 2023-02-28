@@ -14,7 +14,7 @@ body{
 
 .container{
     margin: 1.2em;
-    height: 21em;
+    height: auto;
     width: 18em;
     padding: .8em 0; 
     border: 2px solid rgba(245, 245, 245, 0.021);
@@ -26,17 +26,44 @@ body{
 img{
     width: 12em;
     height: 12em;
+    margin: 1em 0;
+    user-select: none;
 }
 
 h3{
     padding: .5em;
+    user-select: none;
+}
+
+p{
+    user-select: none;
+}
+
+.seekContainer{
+    width: 100%;
+    margin: .7em 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .btnContainer{
-  padding: .8em;  
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;  
 }
 
 .bi{
     font-size: 1.5em;
     cursor: pointer;  
+}
+.bi:first-child, .bi:last-child{
+    font-size: 1em;
+}
+
+.bi:nth-child(3){
+    font-size: 3em;
 }

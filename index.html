@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
+    <title id="titleHead">Music Player</title>
+    <link rel="shortcut icon" href="assets/favicon.webp">
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script defer src="./javascript/main.js"></script>
@@ -14,10 +15,16 @@
         <img class="img" src="" alt="">
         <h3 class="title">title track</h3>
         <p class="album">album track</p>
+        <div class="seekContainer">
+            <p class="">00:00</p>
+            <p class="currentTrackDuration">00:00</p>
+        </div>
         <div class="btnContainer">
+            <i id="shuffleBtn" class="bi bi-shuffle"></i>
             <i id="backBtn" class="bi bi-skip-backward"></i>    
             <i id="playPauseBtn" class="bi bi-play"></i>
-            <i id="forwBtn" class="bi bi-skip-forward"></i>    
+            <i id="forwBtn" class="bi bi-skip-forward"></i>
+            <i id="repeatBtn" class="bi bi-repeat"></i>  
         </div>
     </div>
     <audio controls id="audio" src=""></audio>

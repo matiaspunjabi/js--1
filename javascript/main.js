@@ -35,57 +35,81 @@ const song6 = new Songs("The Catalyst", "A Thousands Suns", "Linkin Park", 336, 
 const playList = [song1,song2,song3,song4,song5,song6];
 
 let currentTrack = document.getElementById("audio");
+const currentTrackDuration = document.querySelector(".currentTrackDuration")
+const container = document.querySelector(".container");
 let trackImg = document.querySelector(".img");
 let trackTitle = document.querySelector(".title");
 let trackAlbum = document.querySelector(".album");
 
-const container = document.querySelector(".container");
+
+//---------bottons--------- 
 const btnContainer = document.querySelector(".btnContainer");
 const backTrackBtn = document.getElementById("backBtn");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const forwTrackBtn = document.getElementById("forwBtn");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const repeatBtn = document.getElementById("repeatBtn");
 
-let isPLaying = false;
 let indexSong = 0;
+let isPLaying = false;
+let isRandom = false;
+let isRepeat = false;
+
+
+const getDurationTrack = () => {
+    currentTrack.addEventListener('loadedmetadata', () => {
+        let durationTrack = Math.floor(currentTrack.duration);
+        let min = Math.floor((durationTrack / 60)) ;
+        let sec = durationTrack % 60
+        currentTrackDuration.innerText = `0${min}:${sec}`
+    })
+}
+
+const playTrack = () => {
+    isPLaying = true;
+    playPauseBtn.className="bi bi-pause";
+    currentTrack.play();
+}
+
+const pauseTrack = () => {
+    isPLaying = false;
+    playPauseBtn.className = "bi bi-play";
+    currentTrack.pause();
+}
+
+const nextTrack = () => {
+    indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++);
+}
+
+const prevTrack = () => {
+    indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--); 
+}
 
 const loadTrack = () => {    
     trackImg.src = playList[indexSong].img; 
     trackTitle.innerText = playList[indexSong].title;    
     trackAlbum.innerText = playList[indexSong].album;   
     currentTrack.src = playList[indexSong].mp3;
-    localStorage.setItem("lastPlaying", indexSong)    
+    getDurationTrack()
+    localStorage.setItem("lastPlaying", indexSong);    
 }
 
 const loadLastTrack = () => {
-    indexSong = localStorage.getItem("lastPlaying")
+    indexSong = localStorage.getItem("lastPlaying");
     loadTrack();
 }
 
-if(localStorage.getItem("lastPlaying") > 0){
-    loadLastTrack()
-} else {
-    loadTrack()
-}
+//------------get last song played saved on localStorage------------
+localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()
 
-const playTrack = () => {
-    isPLaying = true
-    playPauseBtn.className="bi bi-pause";
-    currentTrack.play();
-}
 
-const pauseTrack = () => {
-    isPLaying = false
-    playPauseBtn.className = "bi bi-play"
-    currentTrack.pause();
-}
-
-const nextTrack = () => {
-    indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++)
-}
-
-const prevTrack = () => {
-    indexSong === 0 ? loadTrack(indexSong) : loadTrack(indexSong--) 
-}
+repeatBtn.addEventListener("click", ()=>{
+    repeatBtn.className = "bi bi-repeat-1"
+    currentTrack.addEventListener("ended", ()=>{
+        loadLastTrack()
+        currentTrack.play();
+    })
+})
 
 currentTrack.addEventListener("ended", ()=>{
     nextTrack();
@@ -106,7 +130,6 @@ backTrackBtn.addEventListener("click", () => {
     prevTrack();
     playTrack();    
 })
-
 
 
 
