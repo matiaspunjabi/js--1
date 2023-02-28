@@ -40,6 +40,7 @@ const container = document.querySelector(".container");
 let trackImg = document.querySelector(".img");
 let trackTitle = document.querySelector(".title");
 let trackAlbum = document.querySelector(".album");
+let listDurationTrack = document.querySelector(".listDurationTrack")
 
 
 //---------bottons--------- 
@@ -49,6 +50,9 @@ const playPauseBtn = document.getElementById("playPauseBtn");
 const forwTrackBtn = document.getElementById("forwBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const repeatBtn = document.getElementById("repeatBtn");
+
+//---------playlist--------- 
+const containerList = document.querySelector(".containerList");
 
 let indexSong = 0;
 let isPLaying = false;
@@ -62,7 +66,7 @@ const getDurationTrack = () => {
         let min = Math.floor(durationTrack / 60) ;
         let sec = durationTrack % 60;
         currentTrackDuration.innerText = `0${min}:${sec}`
-    }
+}
 
 const playTrack = () => {
     isPLaying = true;
@@ -97,6 +101,21 @@ const loadLastTrack = () => {
     indexSong = localStorage.getItem("lastPlaying");
     loadTrack();
 }
+
+playList.forEach((e)=>{ 
+        const ol = document.createElement("ol");
+        ol.innerHTML =  `
+                        <li class="liPlayList">
+                            <div>
+                                <img src="${e.img}">
+                                <h3>${e.title}</h3>
+                            </div>
+                            <p class="listDurationTrack">${Math.floor(e.time/60)}:${e.time % 60}</p>
+                        </li>
+                        `;
+        containerList.appendChild(ol);
+    })
+    
 
 //------------get last song played saved on localStorage------------
 localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()

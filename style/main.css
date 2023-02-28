@@ -70,3 +70,27 @@ p{
 .bi:nth-child(3){
     font-size: 3em;
 }
+
+ol{
+    width: 100%;
+}
+
+.liPlayList{
+    height: 3em;
+    width: 18em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.liPlayList div{
+    gap: .5em;
+    display: flex;
+    align-items: center;
+}
+
+.liPlayList img{
+    width: 1.5em;
+    height: 1.5em;
+}
