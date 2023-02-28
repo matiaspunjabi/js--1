@@ -55,15 +55,14 @@ let isPLaying = false;
 let isRandom = false;
 let isRepeat = false;
 
+//------------functions------------
 
 const getDurationTrack = () => {
-    currentTrack.addEventListener('loadedmetadata', () => {
-        let durationTrack = Math.floor(currentTrack.duration);
-        let min = Math.floor((durationTrack / 60)) ;
-        let sec = durationTrack % 60
+        let durationTrack = playList[indexSong].time;
+        let min = Math.floor(durationTrack / 60) ;
+        let sec = durationTrack % 60;
         currentTrackDuration.innerText = `0${min}:${sec}`
-    })
-}
+    }
 
 const playTrack = () => {
     isPLaying = true;
@@ -103,13 +102,7 @@ const loadLastTrack = () => {
 localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()
 
 
-repeatBtn.addEventListener("click", ()=>{
-    repeatBtn.className = "bi bi-repeat-1"
-    currentTrack.addEventListener("ended", ()=>{
-        loadLastTrack()
-        currentTrack.play();
-    })
-})
+//------------events------------
 
 currentTrack.addEventListener("ended", ()=>{
     nextTrack();
