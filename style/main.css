@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -103,13 +104,6 @@ p{
     color: rgb(117 113 98);
     user-select: none;
     cursor: pointer;
-}
-
-.playListTitle:active{
-    background: none;
-}
-i:active{
-    background: none;
 }
 
 .liPlayList div{
