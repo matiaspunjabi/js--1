@@ -156,5 +156,13 @@ backTrackBtn.addEventListener("click", () => {
     playTrack();    
 })
 
-
+currentTrack.addEventListener("timeupdate", (e)=>{
+    let currentTime = e.target.currentTime
+    let min = Math.floor(currentTime / 60) ;
+    let sec = Math.floor(currentTime % 60);
+    if(sec < 10){
+        sec = "0"+ sec
+    }
+    trackStartDuration.innerText = `0${min}:${sec}`
+})
 
