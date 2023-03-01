@@ -15,7 +15,8 @@
 //-------------------------------------------- 
 
 class Songs {
-    constructor(title, album, artist, time, img, mp3){
+    constructor(id, title, album, artist, time, img, mp3){
+        this.id = id;
         this.title = title;
         this.album = album;
         this.artist = artist;
@@ -25,12 +26,12 @@ class Songs {
     }
 }
 
-const song1 = new Songs("Bleed It Out", "Minutes To Midnight", "Linkin Park", 166, "../assets/minutes.jpg", "../songs/music-1.mp3")
-const song2 = new Songs("Lying From You", "Meteora", "Linkin Park", 175, "../assets/meteora.png", "../songs/music-2.mp3")
-const song3 = new Songs("Breaking The Habits", "Meteora", "Linkin Park", 197, "../assets/meteora.png", "../songs/music-3.mp3")
-const song4 = new Songs("In The End", "Hybrid Theory", "Linkin Park", 219, "../assets/hybrid.jpg", "../songs/music-4.mp3")
-const song5 = new Songs("Qwerty", "Unknown", "Linkin Park", 200, "../assets/qwerty.jpg", "../songs/music-5.mp3")
-const song6 = new Songs("The Catalyst", "A Thousands Suns", "Linkin Park", 336, "../assets/thousands.jpg", "../songs/music-6.mp3")
+const song1 = new Songs( 1, "Bleed It Out", "Minutes To Midnight", "Linkin Park", 166, "../assets/minutes.jpg", "../songs/music-1.mp3")
+const song2 = new Songs( 2,"Lying From You", "Meteora", "Linkin Park", 175, "../assets/meteora.png", "../songs/music-2.mp3")
+const song3 = new Songs( 3,"Breaking The Habits", "Meteora", "Linkin Park", 197, "../assets/meteora.png", "../songs/music-3.mp3")
+const song4 = new Songs( 4, "In The End", "Hybrid Theory", "Linkin Park", 219, "../assets/hybrid.jpg", "../songs/music-4.mp3")
+const song5 = new Songs( 5, "Qwerty", "Unknown", "Linkin Park", 200, "../assets/qwerty.jpg", "../songs/music-5.mp3")
+const song6 = new Songs( 6, "The Catalyst", "A Thousands Suns", "Linkin Park", 336, "../assets/thousands.jpg", "../songs/music-6.mp3")
 
 const playList = [song1,song2,song3,song4,song5,song6];
 
@@ -95,25 +96,37 @@ const loadTrack = () => {
     localStorage.setItem("lastPlaying", indexSong);    
 }
 
+
+
 const loadLastTrack = () => {
     indexSong = localStorage.getItem("lastPlaying");
     loadTrack();
 }
 
 playList.forEach((e)=>{ 
-        const ol = document.createElement("ol");
-        ol.innerHTML =  `
-                        <li class="liPlayList">
-                            <div>
-                                <img src="${e.img}">
-                                <h3>${e.title}</h3>
-                            </div>
-                            <p>${Math.floor(e.time/60)}:${e.time % 60}</p>
-                        </li>
-                        `;
-        listContainer.appendChild(ol);
+    const ol = document.createElement("ol");
+    ol.innerHTML =  `
+                    <li id="${e.id}" class="liPlayList">
+                        <div>
+                            <img src="${e.img}" alt="${e.album}">
+                            <h3>${e.title}</h3>
+                        </div>
+                        <p>0${Math.floor(e.time/60)}:${e.time % 60}</p>
+                    </li>
+                    `;
+    listContainer.appendChild(ol);
+    const liPlayList = document.getElementById(`${e.id}`)
+    liPlayList.addEventListener("click", ()=>{
+            currentTrack.src = e.mp3
+            trackImg.src = e.img; 
+            trackTitle.innerText = e.title;    
+            trackAlbum.innerText = e.album;
+            currentTrackDuration.innerText = `0${Math.floor(e.time/60)}:${e.time % 60}`;
+            isPLaying ? playTrack() : pauseTrack();
+        
     })
-    
+})
+
 
 //------------get last song played saved on localStorage------------
 localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()
@@ -129,7 +142,7 @@ playListTitle.addEventListener("click", ()=>{
     if(listContainer.classList.contains("active")){
         dropDownList.className = "bi bi-caret-up"
     } else{
-        dropDownList.className = "bi bi-caret-down"
+        dropDownList.className = "bi bi-caret-down-fill"
     }  
 })
 
