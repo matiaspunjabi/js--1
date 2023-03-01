@@ -92,40 +92,29 @@ const loadTrack = () => {
     trackTitle.innerText = playList[indexSong].title;    
     trackAlbum.innerText = playList[indexSong].album;   
     currentTrack.src = playList[indexSong].mp3;
-    getDurationTrack()
     localStorage.setItem("lastPlaying", indexSong);    
+    getDurationTrack()
 }
-
-
 
 const loadLastTrack = () => {
     indexSong = localStorage.getItem("lastPlaying");
     loadTrack();
 }
 
-playList.forEach((e)=>{ 
-    const ol = document.createElement("ol");
-    ol.innerHTML =  `
-                    <li id="${e.id}" class="liPlayList">
+const olPlayList = document.querySelector(".olPlayList");
+playList.forEach((e)=>{
+    const liPlayList = document.createElement("li")  
+    liPlayList.innerHTML =  `
+                    <div id="${e.id}" class="divPlayList">
                         <div>
                             <img src="${e.img}" alt="${e.album}">
                             <h3>${e.title}</h3>
                         </div>
                         <p>0${Math.floor(e.time/60)}:${e.time % 60}</p>
-                    </li>
+                    </div>
                     `;
-    listContainer.appendChild(ol);
-    const liPlayList = document.getElementById(`${e.id}`)
-    liPlayList.addEventListener("click", ()=>{
-            currentTrack.src = e.mp3
-            trackImg.src = e.img; 
-            trackTitle.innerText = e.title;    
-            trackAlbum.innerText = e.album;
-            currentTrackDuration.innerText = `0${Math.floor(e.time/60)}:${e.time % 60}`;
-            isPLaying ? playTrack() : pauseTrack();
-        
+    olPlayList.appendChild(liPlayList);
     })
-})
 
 
 //------------get last song played saved on localStorage------------
