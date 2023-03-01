@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    background-color: #141313ec;
+    color: white;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.nav__ul{
+    width: 18em;
+    padding: .5em 0 ;
+    height: 3em;
+    color: rgb(185, 172, 124);
+    border-bottom: 0.15em solid rgba(255, 255, 255, 0.055);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+}
+
+.nav__ul li h1{
+    text-transform: capitalize;
+    font-size: 2em;
+}
+
+.nav__ul li .bi{
+    font-size: 2em;
+    color: rgb(117 113 98);
+}
+
+.nav__ul li .bi:hover{
+    color: rgb(185, 172, 124);
+    transition: all .2s ease;
+}
+
+.container{
+    margin: 1.2em;
+    height: auto;
+    width: 18em;
+    padding: .8em 0; 
+    box-shadow:  0px 2px 50px 6px rgba(0,0,0,0.51);;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img{
+    width: 12em;
+    height: 12em;
+    margin: 1em 0;
+    user-select: none;
+}
+
+h3{
+    padding: .5em;
+    user-select: none;
+}
+
+p{
+    user-select: none;
+    color: rgb(117 113 98);
+}
+
+.durationContainer{
+    width: 100%;
+    margin: .7em 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btnContainer{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;  
+}
+
+.bi{
+    font-size: 1.5em;
+    cursor: pointer;  
+}
+.bi:first-child, .bi:last-child{
+    font-size: 1em;
+}
+
+.bi:nth-child(3){
+    font-size: 3em;
+}
+
+.listContainer{
+    opacity: 0;
+    height: 11em;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.listContainer::-webkit-scrollbar{
+    display: none;
+}
+
+.olPlayList{
+    list-style: none;
+}
+
+.active{
+    opacity: 1;
+    transition: .8s;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.divPlayList{
+    height: 3em;
+    width: 18em;
+    padding: 1.5em .2em;
+    border-top: .15em solid rgba(255, 255, 255, 0.055);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.playListTitle{
+    margin: 0 0 1em 0;
+    display: flex;
+    gap: 2em;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(117 113 98);
+    user-select: none;
+    cursor: pointer;
+}
+
+.divPlayList div{
+    gap: .5em;
+    display: flex;
+    align-items: center;
+}
+
+.divPlayList div img{
+    width: 1.5em;
+    height: 1.5em;
+}
