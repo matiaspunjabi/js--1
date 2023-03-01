@@ -40,7 +40,11 @@ let currentTrack = document.getElementById("audio");
 let trackImg = document.querySelector(".img");
 let trackTitle = document.querySelector(".title");
 let trackAlbum = document.querySelector(".album");
-const currentTrackDuration = document.querySelector(".currentTrackDuration")
+let trackStartDuration = document.querySelector(".trackStartDuration");
+
+const currentTrackDuration = document.querySelector(".currentTrackDuration");
+const dropDownList = document.getElementById("dropDownList");
+const playListTitle = document.querySelector(".playListTitle");
 
 //---------bottons--------- 
 const backTrackBtn = document.getElementById("backBtn");
@@ -53,6 +57,8 @@ const repeatBtn = document.getElementById("repeatBtn");
 const container = document.querySelector(".container");
 const btnContainer = document.querySelector(".btnContainer");
 const listContainer = document.querySelector(".listContainer");
+const olPlayList = document.querySelector(".olPlayList");
+
 
 let indexSong = 0;
 let isPLaying = false;
@@ -80,7 +86,7 @@ const pauseTrack = () => {
 }
 
 const nextTrack = () => {
-    indexSong >= playList.length - 1 ? loadTrack(indexSong) : loadTrack(indexSong++);
+    indexSong >= playList.length - 1 ? loadTrack(indexSong = 0) : loadTrack(indexSong++);
 }
 
 const prevTrack = () => {
@@ -101,7 +107,6 @@ const loadLastTrack = () => {
     loadTrack();
 }
 
-const olPlayList = document.querySelector(".olPlayList");
 playList.forEach((e)=>{
     const liPlayList = document.createElement("li")  
     liPlayList.innerHTML =  `
@@ -120,11 +125,7 @@ playList.forEach((e)=>{
 //------------get last song played saved on localStorage------------
 localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()
 
-
 //------------events------------
-
-const dropDownList = document.getElementById("dropDownList");
-const playListTitle = document.querySelector(".playListTitle")
 
 playListTitle.addEventListener("click", ()=>{
     listContainer.classList.toggle("active");
