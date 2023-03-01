@@ -2,11 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: white;
 }
 
 body{
     background-color: #141313ec;
+    color: white;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -37,6 +37,7 @@ h3{
 
 p{
     user-select: none;
+    color: rgb(117 113 98);
 }
 
 .durationContainer{
@@ -46,9 +47,6 @@ p{
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-}
-
-.durationBar{
 }
 
 .btnContainer{
@@ -71,17 +69,40 @@ p{
     font-size: 3em;
 }
 
-ol{
-    width: 100%;
+.listContainer{
+    opacity: 0;
+    height: 11em;
+    overflow-y: auto;
+}
+
+.listContainer::-webkit-scrollbar{
+    display: none;
+}
+
+.active{
+    opacity: 1;
+    transition: .8s;
 }
 
 .liPlayList{
     height: 3em;
     width: 18em;
+    padding: 1.5em .2em;
+    border-top: .15em solid rgba(255, 255, 255, 0.055);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+.playListTitle{
+    margin: 0 0 1em 0;
+    display: flex;
+    gap: 2em;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(117 113 98);
+    user-select: none;
+    cursor: pointer;
 }
 
 .liPlayList div{
@@ -90,7 +111,7 @@ ol{
     align-items: center;
 }
 
-.liPlayList img{
+.liPlayList div img{
     width: 1.5em;
     height: 1.5em;
 }

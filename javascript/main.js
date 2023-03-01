@@ -34,30 +34,28 @@ const song6 = new Songs("The Catalyst", "A Thousands Suns", "Linkin Park", 336, 
 
 const playList = [song1,song2,song3,song4,song5,song6];
 
+//---------dom--------- 
 let currentTrack = document.getElementById("audio");
-const currentTrackDuration = document.querySelector(".currentTrackDuration")
-const container = document.querySelector(".container");
 let trackImg = document.querySelector(".img");
 let trackTitle = document.querySelector(".title");
 let trackAlbum = document.querySelector(".album");
-let listDurationTrack = document.querySelector(".listDurationTrack")
-
+const currentTrackDuration = document.querySelector(".currentTrackDuration")
 
 //---------bottons--------- 
-const btnContainer = document.querySelector(".btnContainer");
 const backTrackBtn = document.getElementById("backBtn");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const forwTrackBtn = document.getElementById("forwBtn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const repeatBtn = document.getElementById("repeatBtn");
 
-//---------playlist--------- 
-const containerList = document.querySelector(".containerList");
+//---------containers--------- 
+const container = document.querySelector(".container");
+const btnContainer = document.querySelector(".btnContainer");
+const listContainer = document.querySelector(".listContainer");
 
 let indexSong = 0;
 let isPLaying = false;
-let isRandom = false;
-let isRepeat = false;
+let dropDown = false;
 
 //------------functions------------
 
@@ -110,10 +108,10 @@ playList.forEach((e)=>{
                                 <img src="${e.img}">
                                 <h3>${e.title}</h3>
                             </div>
-                            <p class="listDurationTrack">${Math.floor(e.time/60)}:${e.time % 60}</p>
+                            <p>${Math.floor(e.time/60)}:${e.time % 60}</p>
                         </li>
                         `;
-        containerList.appendChild(ol);
+        listContainer.appendChild(ol);
     })
     
 
@@ -122,6 +120,18 @@ localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()
 
 
 //------------events------------
+
+const dropDownList = document.getElementById("dropDownList");
+const playListTitle = document.querySelector(".playListTitle")
+
+playListTitle.addEventListener("click", ()=>{
+    listContainer.classList.toggle("active");
+    if(listContainer.classList.contains("active")){
+        dropDownList.className = "bi bi-caret-up"
+    } else{
+        dropDownList.className = "bi bi-caret-down"
+    }  
+})
 
 currentTrack.addEventListener("ended", ()=>{
     nextTrack();
