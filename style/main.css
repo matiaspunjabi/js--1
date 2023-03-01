@@ -105,6 +105,13 @@ p{
     cursor: pointer;
 }
 
+.playListTitle:active{
+    background: none;
+}
+i:active{
+    background: none;
+}
+
 .liPlayList div{
     gap: .5em;
     display: flex;
