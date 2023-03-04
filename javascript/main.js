@@ -67,6 +67,7 @@ let dropDown = false;
 //------------functions------------
 
 
+
 const getDurationTrack = () => {
         let durationTrack = playList[indexSong].time;
         let min = Math.floor(durationTrack / 60) ;
@@ -77,13 +78,11 @@ const getDurationTrack = () => {
             let durationTrack = e.target.duration;
             let min = Math.floor(currentTime / 60) ;
             let sec = Math.floor(currentTime % 60);
-            if(sec < 10){
-                sec = "0"+ sec
-            }
+            if(sec < 10){sec = "0"+ sec}
             trackStartDuration.innerText = `0${min}:${sec}`
 
             let progressBar = document.querySelector(".durationBar");
-            progressBar.value = (currentTime/durationTrack) *100; 
+            progressBar.value = (currentTime/durationTrack) * 100;
         })
 }
 
@@ -137,7 +136,7 @@ playList.forEach((e)=>{
 
 
 //------------get last song played saved on localStorage------------
-localStorage.getItem("lastPlaying") > 0 ? loadLastTrack() : loadTrack()
+localStorage.getItem("lastPlaying") ? loadLastTrack() : loadTrack()
 
 //------------events------------
 
@@ -175,6 +174,7 @@ backTrackBtn.addEventListener("click", () => {
 
 const loginBtn = document.getElementById("login");
 const userContainer = document.getElementById("user");
+
 const userForm = document.querySelector(".userForm")
 const inputName = document.querySelector(".userInputName");
 const inputLastName = document.querySelector(".userInputLastName");
@@ -187,7 +187,7 @@ const showCreatedUser = ()=>{
     let userCreatedString = localStorage.getItem("userCreated");
     const userCreatedObject = JSON.parse(userCreatedString)
     const wellcome = document.querySelector(".wellcome");
-    wellcome.innerHTML = `<p class="wellcomeMessage">Wellcome <span class="wellcomeSpan">${userCreatedObject.name} ${userCreatedObject.lastName}</> !</p>`;
+    wellcome.innerHTML = `<p class="wellcomeMessage">Wellcome <span class="wellcomeSpan">${userCreatedObject.name} ${userCreatedObject.lastName}!</span></p>`;
 }
 
 const creatingUser = () => {
@@ -196,7 +196,7 @@ const creatingUser = () => {
         let userCreated = {
             name: inputName.value,
             lastName: inputLastName.value  
-    }
+        }
         user.push(userCreated);
 
         const userCreatedTurned = JSON.stringify(userCreated);
@@ -207,7 +207,8 @@ const creatingUser = () => {
         olPlayList.classList.remove("filter");
 
         const wellcome = document.querySelector(".wellcome");
-        wellcome.innerHTML = `<p class="wellcomeMessage">Wellcome <span class="wellcomeSpan">${userCreated.name} ${userCreated.lastName}</span> !</p>`;
+        wellcome.innerHTML = `<p class="wellcomeMessage">Wellcome <span class="wellcomeSpan">${userCreated.name} ${userCreated.lastName}!</span></p>`;
+
         userForm.reset();  
     }) 
 }
@@ -227,8 +228,8 @@ creatUserBtn.addEventListener("click", () =>{
 })
 
 if(localStorage.getItem("userCreated")){
-    creatingUser()
+    creatingUser();
     showCreatedUser();
 } else {
-    creatingUser()
+    creatingUser();
 }
