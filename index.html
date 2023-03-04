@@ -4,20 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <script defer src="./javascript/main2.js"></script>
+    <title id="titleHead">Music Player || Coderhouse Proyect by Punjabi </title>
+    <link rel="shortcut icon" href="./assets/favicon.webp">
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script defer src="./javascript/main.js"></script>
 </head>
 <body>
-    <h1 class="list__h1">Welcome to the page you can do a "To do list"</h1>
-    <div class="list__container">
-        <form class="list__form">
-            <input class="list__input"type="text" name="name" placeholder="Write you have to do it:">
-            <button class="list__btn">Add to do list</button>
-        </form>
-        <div class="todolist__container">
+<header>
+    <nav>
+        <ul class="nav__ul">
+            <li><h1>music player</h1></li>
+            <li><i id="login" class="bi bi-list"></i></li>
+        </ul>
+    </nav>
+</header>
 
+<main>
+
+    <audio id="audio" src=""></audio>
+
+    <div class="wellcome"></div>
+
+    <div id="user"class="userContainer hidden">
+        <i class="bi iconUser bi-person-circle"></i>
+        <form class="userForm"action="">
+            <input class="userInputName" type="text" placeholder="Name">
+            <input class="userInputLastName" type="text" placeholder="Last Name">
+            <button class="userBtn">create user</button>
+        </form>
+        <div class="linkContainer">
+            <a href="https://github.com/matiaspunjabi/js--1/tree/pre-project-3" target="_blank"><i class="bi gitIcon bi-github"></i></a>
+            <a href="#"><i class="bi linkeIcon bi-linkedin"></i></a>            
         </div>
     </div>
-</body>
+
+    <div class="container">
+        <img class="img" src="" alt="">
+        <h3 class="title">title track</h3>
+        <h4 class="album">album track</h4>
+        <div class="durationContainer">
+            <p class="trackStartDuration"></p>
+            <input class="durationBar" type="range" min="0" max="100" value="0" step="0.1">
+            <p class="currentTrackDuration"></p>
+        </div>
+        <div class="btnContainer">
+            <i id="shuffleBtn" class="bi bi-shuffle hidden"></i>
+            <i id="backBtn" class="bi bi-skip-backward"></i>    
+            <i id="playPauseBtn" class="bi bi-play"></i>
+            <i id="forwBtn" class="bi bi-skip-forward"></i>
+            <i id="repeatBtn" class="bi bi-repeat hidden"></i>  
+        </div>
+    </div>
+
+    <div class="playListTitle">
+        <h2>Linkin Park Playlist</h2>
+        <i id="dropDownList" class="bi bi-caret-down-fill"></i>
+    </div>
+
+    <div class="listContainer">
+        <ol class="olPlayList"></ol>
+    </div>
+
+</main>
+
+</body>     
 </html>
