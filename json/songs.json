@@ -1,0 +1,5 @@
+
+[
+    {"id":1, "name":"Bleed It Out", "album":"Minutes To Midnight", "artist":"Linkin Park", "img":"../assets/minutes.jpg", "mp3":"../songs/music-1.mp3"},
+    {"id":2, "name":"Lying From You", "album":"Meteora", "artist":"Linkin Park", "img":"../assets/meteora.jpg", "mp3":"../songs/music-2.mp3"}
+]
