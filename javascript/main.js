@@ -1,27 +1,45 @@
-//*******************  Music player *******************
-
-//[x] play a mp3 file from navigator.
-//[x] functional next and prev song.
-//[x] functional play-pause btn toggle.
-//[x] Play next song after current song ends.
-//[x] use localstorage to save current audio play.
-//[] functional shuffle and repeat buttons.
-//[] add and remove songs to likesongs playlist.
-//[] create a personal playlist.
-//[] add own mp3 files to music player.
-//[] css responsive, favicon customize asset.
 
 
-//-------------------------------------------- 
+const mainAudio = document.querySelector("#audio");
 
+const playList = document.querySelector(".playlist"); 
 const songsJson = "../json/songs.json";
+const songs = []
 
-playList2 = [];
+let indexTrack = 35;
 
 fetch(songsJson)
 .then(response => response.json())
 .then(data => {
-    playList2.push(data)
-    console.log(playList2);
-})
+    data.forEach(e=>{
+            let audio = document.createElement("audio");
+            audio.src = e.mp3
+            audio.addEventListener("loadedmetadata", ()=>{
+                let trackduration = audio.duration
 
+                let min = Math.floor(trackduration / 60);
+                let sec = Math.floor(trackduration % 60);
+                if(sec < 10){sec = "0"+sec}
+
+                let li = document.createElement("li");
+                li.className = "liContainer"
+                li.innerHTML =  `
+                                <img src="${e.img}" alt="${e.title}" title="${e.title}">
+                                <h3>${e.title}</h3>
+                                <p>${min}:${sec}</p>
+                                `
+                playList.appendChild(li)
+            })
+        })
+    });
+    
+const playTrack = (indexSong) =>{
+    mainAudio.src = `../songs/music-${indexSong}.mp3` 
+    mainAudio.play()
+}
+playTrack(indexTrack)
+
+mainAudio.addEventListener("ended", ()=>{
+    indexTrack++
+    playTrack(indexTrack)
+})

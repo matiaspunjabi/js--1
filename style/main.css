@@ -6,3 +6,31 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
+
+.playlist{
+    background: red;
+    height: 30em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    list-style: none;
+    
+}
+
+.playlist::-webkit-scrollbar{
+    display: none;
+}
+
+img{
+    width: 5em;
+    height: 5em;
+}
+
+.liContainer{
+    padding:.2em 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
