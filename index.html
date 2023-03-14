@@ -12,22 +12,38 @@
 </head>
 <body>
 <header>
-    <nav>
+    <nav class="navContainer">
         <h1>music player</h1>
+        <ul class="navUl">
+            <li class="navLi">all songs</li>
+            <li class="navLi">albums</li>
+            <li class="navLi">artist</li>
+        </ul>
     </nav>
 </header>
 
 <main>
 
-    <audio id="audio" controls src="" preload="metadata"></audio>
+    <audio id="audio" src="" preload="metadata"></audio>
 
-    <div>
-        <ul class="playlist">
+    <div class="mainContainer">
 
-        </ul>
     </div>
 
 </main>
+<footer>
+    <div class="footerContainer">
+        <div class="trackContainer">
+
+        </div>
+        <div class="btnContainer">
+            <i class="bi bi-skip-backward"></i>
+            <i class="bi bi-play"></i>
+            <!-- <i class="bi bi-pause"></i> -->
+            <i class="bi bi-skip-forward"></i>
+        </div>
+    </div>
+</footer>
 
 </body>     
 </html>
