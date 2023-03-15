@@ -26,12 +26,12 @@ class Songs {
     }
 }
 
-const song1 = new Songs( 1, "Bleed It Out", "Minutes To Midnight", "Linkin Park", 166, "../assets/minutes.jpg", "../songs/music-1.mp3")
-const song2 = new Songs( 2,"Lying From You", "Meteora", "Linkin Park", 175, "../assets/meteora.png", "../songs/music-2.mp3")
-const song3 = new Songs( 3,"Breaking The Habits", "Meteora", "Linkin Park", 196, "../assets/meteora.png", "../songs/music-3.mp3")
-const song4 = new Songs( 4, "In The End", "Hybrid Theory", "Linkin Park", 219, "../assets/hybrid.jpg", "../songs/music-4.mp3")
-const song5 = new Songs( 5, "Qwerty", "Unknown", "Linkin Park", 200, "../assets/qwerty.jpg", "../songs/music-5.mp3")
-const song6 = new Songs( 6, "The Catalyst", "A Thousands Suns", "Linkin Park", 336, "../assets/thousands.jpg", "../songs/music-6.mp3")
+const song1 = new Songs( 1, "Bleed It Out", "Minutes To Midnight", "Linkin Park", 166, "./assets/minutes.jpg", "./songs/music-1.mp3")
+const song2 = new Songs( 2,"Lying From You", "Meteora", "Linkin Park", 175, "./assets/meteora.png", "./songs/music-2.mp3")
+const song3 = new Songs( 3,"Breaking The Habits", "Meteora", "Linkin Park", 196, "./assets/meteora.png", "./songs/music-3.mp3")
+const song4 = new Songs( 4, "In The End", "Hybrid Theory", "Linkin Park", 219, "./assets/hybrid.jpg", "./songs/music-4.mp3")
+const song5 = new Songs( 5, "Qwerty", "Unknown", "Linkin Park", 200, "./assets/qwerty.jpg", "./songs/music-5.mp3")
+const song6 = new Songs( 6, "The Catalyst", "A Thousands Suns", "Linkin Park", 336, "./assets/thousands.jpg", "./songs/music-6.mp3")
 
 const playList = [song1,song2,song3,song4,song5,song6];
 
