@@ -11,39 +11,45 @@
     <script defer src="./javascript/main.js"></script>
 </head>
 <body>
-<header>
-    <nav class="navContainer">
-        <h1>music player</h1>
-        <ul class="navUl">
-            <li class="navLi">all songs</li>
-            <li class="navLi">albums</li>
-            <li class="navLi">artist</li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav class="navContainer">
+            <div class="h1Container">
+                <h1>music player</h1>
+                <i class="bi bi-list"></i>
+            </div>
+            <ul class="navUl">
+                <li class="navLi allSongsList">all songs</li>
+                <li class="navLi allAlbumsList">albums</li>
+                <li class="navLi allArtistList">artist</li>
+            </ul>
+        </nav>
+    </header>
 
-<main>
+    <main>
 
-    <audio id="audio" src="" preload="metadata"></audio>
+        <audio id="audio" src="" preload="metadata"></audio>
 
-    <div class="mainContainer">
+        <div class="allTracksContainer notHidden"></div>
+        <div class="albumContainer hidden notHidden"></div>
+        <div class="artistContainer hidden notHidden"></div>
 
-    </div>
+    </main>
 
-</main>
-<footer>
-    <div class="footerContainer">
-        <div class="trackContainer">
+    <footer>
+        <div class="footerContainer">
+            <div class="trackContainer">
 
+            </div>
+            <div class="btnContainer">
+                <i class="bi bi-shuffle"></i>
+                <i class="bi bi-skip-backward"></i>
+                <i class="bi bi-play"></i>
+                <!-- <i class="bi bi-pause"></i> -->
+                <i class="bi bi-skip-forward"></i>
+                <i class="bi bi-repeat"></i>
+            </div>
         </div>
-        <div class="btnContainer">
-            <i class="bi bi-skip-backward"></i>
-            <i class="bi bi-play"></i>
-            <!-- <i class="bi bi-pause"></i> -->
-            <i class="bi bi-skip-forward"></i>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 </body>     
 </html>

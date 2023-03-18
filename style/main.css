@@ -8,31 +8,52 @@
 }
 
 body{
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif;
     background-color: rgb(32, 30, 30);
-    color: white;
+    color: rgb(224, 224, 224);
 
-    margin: 0;
+    margin: 0 auto;
+    max-width: 40em;
     width: 100vw;
     height: 100vh;
 
-    display: flex;  
-    flex-direction:column;
-    align-items: center;
+    display: grid;  
+    grid-template-rows: 18vh 72vh 10vh;
+    text-transform: capitalize;
 }
+
 
 .navContainer{
     width: 100%;
+    height: 100%;
 }
 
-.navContainer h1 {
-    font-family: "Lobster";
-    font-size: 3.5em;
+.h1Container{
+    padding: .5em 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.h1Container h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 2.7em;
     color: rgb(185, 172, 124);
 }
 
+.h1Container .bi {
+    font-size: 2em;
+    color: rgb(185, 172, 124);
+}
+
+.h1Container .bi:hover{
+    border: 2px solid rgb(185, 172, 124);
+    cursor: pointer;
+}
+
 .navUl{
-    margin: 1em 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -40,12 +61,39 @@ body{
     list-style: none;
 }
 
+.navLi{
+    padding: .5em 1.5em;
+    border: 1px solid rgb(185, 172, 124);
+    color: rgb(185, 172, 124);
+    font-weight: bold;
+}
+
+.navLi:hover{
+    cursor: pointer;
+    background-color: rgb(185, 172, 124);
+    color: rgb(224, 224, 224);
+    transition: all .2s;
+}
+
+
+h2{
+    margin-bottom: .5em;
+    text-align: center;
+    font-size: 2em;
+    color: rgb(117 113 98);
+}
+.allTracksContainer, .albumContainer, .artistContainer {
+    height: 100%;
+    overflow: auto;
+}
+
+.allTracksContainer::-webkit-scrollbar, .albumContainer::-webkit-scrollbar, .artistContainer::-webkit-scrollbar{
+    display: none;
+}
+
 .playlist{
-    background: red;
-    height: 30em;
+    height: auto;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     overflow: auto;
     list-style: none;
     
@@ -56,14 +104,104 @@ body{
 }
 
 img{
-    width: 5em;
-    height: 5em;
+    width: 3.5em;
+    height: 3.5em;
 }
 
 .liContainer{
-    padding:.2em 1em;
+    height: auto;
+    padding: .5em 1em;
+    border-top: 0.15em solid rgba(255, 255, 255, 0.055);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    font-size: 1em;
+}
+
+.liContainer:last-child{
+    border-bottom: 0.15em solid rgba(255, 255, 255, 0.055);
+
+}
+
+.liContainer:hover{
+    background-color: rgba(180, 170, 131, 0.445);
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: all .1s;
+}
+
+.footerContainer{
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.trackContainer{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 1em;
+}
+
+.trackContainer img{
+    width: 30%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.trackContainer div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .2em;
+
+   
+}
+
+.trackContainer div h3{
+    width: 100%;
+    font-size: .9em;
+    text-align: start;
+    overflow: auto;
+    /* text-overflow: ellipsis; */
+
+}
+
+.trackContainer div p{
+    font-size: .7em;
+    color: rgba(224, 224, 224, 0.637);
+}
+
+.btnContainer{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btnContainer .bi{
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.btnContainer .bi:nth-child(3){
+    font-size: 2em;
+}
+
+.btnContainer .bi:first-child ,.btnContainer .bi:last-child {
+    font-size: .7em;
+}
+
+.hidden{
+    display: none;
 }

@@ -1,84 +1,100 @@
 const mainAudio = document.querySelector("#audio");
 
-const mainContainer = document.querySelector(".mainContainer"); 
+const allTracksContainer = document.querySelector(".allTracksContainer"); 
+const albumContainer = document.querySelector(".albumContainer"); 
+const artistContainer = document.querySelector(".artistContainer"); 
+const trackContainerFooter = document.querySelector(".trackContainer")
 const songsJson = "../json/songs.json";
-const songs = []
 
-let indexTrack = 35;
-
-// fetch(songsJson)
-// .then(response => response.json())
-// .then(data => {
-//     data.forEach(e=>{
-//             let audio = document.createElement("audio");
-//             audio.src = e.mp3
-//             audio.addEventListener("loadedmetadata", ()=>{
-//                 let trackduration = audio.duration
-
-//                 let min = Math.floor(trackduration / 60);
-//                 let sec = Math.floor(trackduration % 60);
-//                 if(sec < 10){sec = "0"+sec}
-
-//                 let li = document.createElement("li");
-//                 li.className = "liContainer"
-//                 li.innerHTML =  `
-//                                 <img src="${e.img}" alt="${e.title}" title="${e.title}">
-//                                 <h3>${e.title}</h3>
-//                                 <p>${min}:${sec}</p>
-//                                 `
-//                 playList.appendChild(li)
-//             })
-//         })
-//     });
-    
-// const playTrack = (indexSong) =>{
-//     mainAudio.src = `../songs/music-${indexSong}.mp3` 
-//     mainAudio.play()
-// }
-// playTrack(indexTrack)
-
-// mainAudio.addEventListener("ended", ()=>{
-//     indexTrack++
-//     playTrack(indexTrack)
-// })
-
-const albums = document.querySelector(".albums")
-const albumContainer = document.querySelector(".albumContainer")
+let indexTrack;
 
 fetch(songsJson)
 .then(response => response.json())
 .then(data => {
-    console.log(data[25].album)
-    // showAlbumArrays(data, data[22].album)
-})
-
-
-const showAlbumArrays = (data, albumName) => {
-    const album = data.filter(e=> e.album.includes(albumName));
-    console.log(album)
-    let h2 = document.createElement("h2")
-    h2.innerHTML = `${albumName}`
-    mainContainer.appendChild(h2)
-    album.forEach(e => {
-            let audio = document.createElement("audio");
-            audio.src = e.mp3
-            audio.addEventListener("loadedmetadata", ()=>{
-                let trackduration = audio.duration
-
-                let min = Math.floor(trackduration / 60);
-                let sec = Math.floor(trackduration % 60);
-                if(sec < 10){sec = "0"+sec}
-
-                let ul = document.createElement("ul");
-                ul.innerHTML =  `   
-                                    <li class= "liContainer">
-                                        <img src="${e.img}" alt="${e.title}" title="${e.title}">
-                                        <h3>${e.title}</h3>
-                                        <p>${min}:${sec}</p>
-                                    </li>
-                                `
-                mainContainer.appendChild(ul)
-        });
+    const allSongsList = document.querySelector(".allSongsList");
+    showItem("all songs", data, allTracksContainer);
+    allSongsList.addEventListener("click", () =>{
+        allTracksContainer.classList.remove("hidden");
+            hideContainer(albumContainer, artistContainer);
     })
 
+    const allAlbumsList = document.querySelector(".allAlbumsList");
+    getAlbums(data, "nevermind");
+    getAlbums(data, "meteora");
+    getAlbums(data, "hybrid theory");
+    getAlbums(data, "dead silence");
+    getAlbums(data, "reanimation");
+    getAlbums(data, "wasting light");
+    allAlbumsList.addEventListener("click", ()=>{
+        albumContainer.classList.remove("hidden")
+            hideContainer(allTracksContainer, artistContainer);
+    })
+    const allArtistList = document.querySelector(".allArtistList");
+    getArtists(data, "linkin park");
+    getArtists(data, "nirvana");
+    getArtists(data, "billy talent");
+    getArtists(data, "foo fighters");
+    allArtistList.addEventListener("click", ()=>{
+        artistContainer.classList.remove("hidden");
+            hideContainer(allTracksContainer, albumContainer);
+    })
+})
+
+const getAlbums = (data, album) =>{
+    let albumArray = data.filter(e=> e.album === album );
+    showItem(album, albumArray, albumContainer);
+}
+
+const getArtists = (data, artist) =>{
+    let artistName = data.filter(e=> e.artist === artist);
+    showItem(artist, artistName, artistContainer);
+}
+
+const showItem = (item, itemArray, itemContainer) => {
+    const h2 = document.createElement("h2");
+    h2.innerHTML= `${item}`;
+
+    const ul = document.createElement("ul");
+    ul.className = "playlist";
+    itemArray.forEach(songs => {
+        let indexTrackAlbum = itemArray.indexOf(songs);
+
+        const li = document.createElement("li");
+        li.className = "liContainer";
+        li.innerHTML =  `
+                            <img src="${songs.img}">
+                            <h3>${songs.title}</h3>
+                        `;
+        ul.appendChild(li);
+        li.addEventListener("click", () =>{
+            showTrackFooter(songs);
+            console.log(indexTrackAlbum);
+            mainAudio.addEventListener("ended", ()=>{
+                mainAudio.src = itemArray[indexTrackAlbum++].mp3;
+                mainAudio.play();
+            })
+            mainAudio.src = itemArray[indexTrackAlbum].mp3;
+            mainAudio.play();
+            })
+        })
+    itemContainer.appendChild(h2);
+    itemContainer.appendChild(ul);
+}
+
+const hideContainer = (containerOne, containerTwo) =>{
+    if(containerOne.classList.contains("notHidden") & containerTwo.classList.contains("notHidden")){
+        containerOne.classList.add("hidden");
+        containerTwo.classList.add("hidden");
+    }
+}
+
+
+const showTrackFooter = (songs) => {
+    trackContainerFooter.innerHTML =    `
+                                            <img src="${songs.img}">
+                                            <div>
+                                                <h3>${songs.title}</h3>
+                                                <p>${songs.album}</p>
+                                            <div>
+                                        `
 }
