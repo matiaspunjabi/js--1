@@ -11,30 +11,35 @@ body{
     font-family: 'Rubik', sans-serif;
     background-color: rgb(32, 30, 30);
     color: rgb(224, 224, 224);
-
     margin: 0 auto;
     max-width: 40em;
-    width: 100vw;
-    height: 100vh;
-
-    display: grid;  
-    grid-template-rows: 18vh 72vh 10vh;
     text-transform: capitalize;
+    scroll-behavior: smooth;
 }
 
+header{
+    width: 100%;
+    height: auto;
+    position: sticky;
+    top: 0;
+}
 
 .navContainer{
-    width: 100%;
-    height: 100%;
+    background-color: rgb(32, 30, 30);
 }
 
 .h1Container{
-    padding: .5em 0;
+    padding: .5em;
     width: 100%;
+    height: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.h1Container a {
+    text-decoration: none;
 }
 
 .h1Container h1 {
@@ -54,6 +59,9 @@ body{
 }
 
 .navUl{
+    width: 100%;
+    height: auto;
+    padding: 0 0 .5em 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -77,14 +85,17 @@ body{
 
 
 h2{
-    margin-bottom: .5em;
-    text-align: center;
-    font-size: 2em;
-    color: rgb(117 113 98);
+    padding: .5em;
+    text-align: start;
+    font-size: 1.8em;
+    color: rgba(224, 224, 224, 0.753);
+    background-color: rgb(185, 172, 124);
+    position: sticky;
+    top: 2.44em;
 }
 .allTracksContainer, .albumContainer, .artistContainer {
     height: 100%;
-    overflow: auto;
+    width: 100%;
 }
 
 .allTracksContainer::-webkit-scrollbar, .albumContainer::-webkit-scrollbar, .artistContainer::-webkit-scrollbar{
@@ -94,9 +105,7 @@ h2{
 .playlist{
     height: auto;
     width: 100%;
-    overflow: auto;
     list-style: none;
-    
 }
 
 .playlist::-webkit-scrollbar{
@@ -104,40 +113,61 @@ h2{
 }
 
 img{
-    width: 3.5em;
-    height: 3.5em;
+    width: 3em;
+    height: 3em;
+    object-fit: cover;
 }
 
 .liContainer{
+    margin-bottom: .5em;
     height: auto;
     padding: .5em 1em;
-    border-top: 0.15em solid rgba(255, 255, 255, 0.055);
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1em;
+    justify-content: space-between;
     font-size: 1em;
 }
 
-.liContainer:last-child{
-    border-bottom: 0.15em solid rgba(255, 255, 255, 0.055);
-
-}
-
 .liContainer:hover{
-    background-color: rgba(180, 170, 131, 0.445);
+    background-color: rgba(218, 215, 206, 0.068);
     cursor: pointer;
-    transform: scale(1.02);
     transition: all .1s;
 }
 
+.liContainer div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.liContainer .bi-heart{
+    margin-right: 1em;
+    font-size: 1.5em;
+    color: rgb(185, 172, 124);
+}
+
+.liContainer .bi-heart:hover{
+    background-color: rgb(185, 172, 124);
+}
+
+footer{
+    position: sticky;
+    bottom: 0;
+}
+
 .footerContainer{
-    height: 100%;
+    height: 5em;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    background-color: transparent;
+    backdrop-filter: blur(3em);
 
 }
 
@@ -151,9 +181,9 @@ img{
 }
 
 .trackContainer img{
-    width: 30%;
-    height: 100%;
-    object-fit: contain;
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
 }
 
 .trackContainer div{
@@ -170,9 +200,6 @@ img{
     width: 100%;
     font-size: .9em;
     text-align: start;
-    overflow: auto;
-    /* text-overflow: ellipsis; */
-
 }
 
 .trackContainer div p{

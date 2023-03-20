@@ -14,11 +14,11 @@
     <header>
         <nav class="navContainer">
             <div class="h1Container">
-                <h1>music player</h1>
+                <a href="index.html"><h1>music player</h1></a>
                 <i class="bi bi-list"></i>
             </div>
-            <ul class="navUl">
-                <li class="navLi allSongsList">all songs</li>
+            <ul id="navUl" class="navUl hidden">
+                <li  class="navLi allSongsList">all songs</li>
                 <li class="navLi allAlbumsList">albums</li>
                 <li class="navLi allArtistList">artist</li>
             </ul>
@@ -37,16 +37,16 @@
 
     <footer>
         <div class="footerContainer">
+            <div class="seekBar"></div>
             <div class="trackContainer">
-
+                
             </div>
             <div class="btnContainer">
-                <i class="bi bi-shuffle"></i>
+                <i class="bi bi-shuffle hidden"></i>
                 <i class="bi bi-skip-backward"></i>
-                <i class="bi bi-play"></i>
-                <!-- <i class="bi bi-pause"></i> -->
+                <i id="playPauseBtn" class="bi bi-play"></i>
                 <i class="bi bi-skip-forward"></i>
-                <i class="bi bi-repeat"></i>
+                <i class="bi bi-repeat hidden"></i>
             </div>
         </div>
     </footer>

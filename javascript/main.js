@@ -14,8 +14,9 @@ fetch(songsJson)
     const allSongsList = document.querySelector(".allSongsList");
     showItem("all songs", data, allTracksContainer);
     allSongsList.addEventListener("click", () =>{
+        menuList.classList.add("hidden");
         allTracksContainer.classList.remove("hidden");
-            hideContainer(albumContainer, artistContainer);
+        hideContainer(albumContainer, artistContainer);
     })
 
     const allAlbumsList = document.querySelector(".allAlbumsList");
@@ -26,17 +27,19 @@ fetch(songsJson)
     getAlbums(data, "reanimation");
     getAlbums(data, "wasting light");
     allAlbumsList.addEventListener("click", ()=>{
+        menuList.classList.add("hidden");
         albumContainer.classList.remove("hidden")
-            hideContainer(allTracksContainer, artistContainer);
+        hideContainer(allTracksContainer, artistContainer);
     })
     const allArtistList = document.querySelector(".allArtistList");
-    getArtists(data, "linkin park");
-    getArtists(data, "nirvana");
     getArtists(data, "billy talent");
+    getArtists(data, "nirvana");
     getArtists(data, "foo fighters");
+    getArtists(data, "linkin park");
     allArtistList.addEventListener("click", ()=>{
+        menuList.classList.add("hidden");
         artistContainer.classList.remove("hidden");
-            hideContainer(allTracksContainer, albumContainer);
+        hideContainer(allTracksContainer, albumContainer);
     })
 })
 
@@ -62,19 +65,19 @@ const showItem = (item, itemArray, itemContainer) => {
         const li = document.createElement("li");
         li.className = "liContainer";
         li.innerHTML =  `
-                            <img src="${songs.img}">
-                            <h3>${songs.title}</h3>
+                            <div>
+                                <img src="${songs.img}" alt="${songs.title} ${songs.artist}">
+                                <h3>${songs.title}</h3>
+                            </div>
+                            <div>                           
+                                <i class="bi bi-heart"></i>
+                                <p>00:00</p>
+                            </div>
                         `;
         ul.appendChild(li);
         li.addEventListener("click", () =>{
-            showTrackFooter(songs);
-            console.log(indexTrackAlbum);
-            mainAudio.addEventListener("ended", ()=>{
-                mainAudio.src = itemArray[indexTrackAlbum++].mp3;
-                mainAudio.play();
-            })
-            mainAudio.src = itemArray[indexTrackAlbum].mp3;
-            mainAudio.play();
+            playTrack(itemArray, indexTrackAlbum, songs)
+            nexTrack(itemArray, indexTrackAlbum)
             })
         })
     itemContainer.appendChild(h2);
@@ -88,13 +91,56 @@ const hideContainer = (containerOne, containerTwo) =>{
     }
 }
 
-
 const showTrackFooter = (songs) => {
-    trackContainerFooter.innerHTML =    `
-                                            <img src="${songs.img}">
-                                            <div>
-                                                <h3>${songs.title}</h3>
-                                                <p>${songs.album}</p>
-                                            <div>
+    trackContainerFooter.innerHTML =    `   
+                                        <img src="${songs.img}" alt="${songs.title} ${songs.artist}">
+                                        <div>
+                                            <h3>${songs.title}</h3>
+                                            <p>${songs.album}</p>
+                                        </div>
+                                            
                                         `
 }
+
+const backwardBtn = document.querySelector(".bi-skip-backward")
+const forwardBtn = document.querySelector(".bi-skip-forward")
+const playBtn = document.querySelector("#playPauseBtn")
+
+
+const playTrack = (itemArray, indexTrackAlbum, songs) =>{
+    playBtn.className = "bi bi-pause"
+    mainAudio.src = itemArray[indexTrackAlbum].mp3;
+    mainAudio.play()
+    showTrackFooter(songs)
+}
+
+const nexTrack = (itemArray, indexTrackAlbum) =>{
+    forwardBtn.addEventListener("click", ()=>{
+        showTrackFooter(itemArray[indexTrackAlbum])
+        mainAudio.src = itemArray[indexTrackAlbum++].mp3;
+        mainAudio.play()
+    })
+}
+
+playBtn.addEventListener("click", ()=>{
+    if(playBtn.className === "bi bi-pause"){
+        playBtn.className = "bi bi-play"
+        mainAudio.pause()
+    } else {
+        playBtn.className ="bi bi-pause"
+        mainAudio.play()
+    }
+})
+
+const getTrackDuration = () =>{
+    mainAudio.addEventListener("loadedmetadata", ()=>{
+        console.log(mainAudio.duration)
+    })
+}
+
+const menu = document.querySelector(".bi-list");
+const menuList = document.querySelector(".navUl");
+
+menu.addEventListener("click", ()=>{
+    menuList.classList.toggle("hidden")
+})
