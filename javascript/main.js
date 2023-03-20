@@ -60,6 +60,11 @@ const showItem = (item, itemArray, itemContainer) => {
     const ul = document.createElement("ul");
     ul.className = "playlist";
     itemArray.forEach(songs => {
+        let min = Math.floor(songs.duration / 60);
+        let sec = Math.floor(songs.duration % 60)
+        if(sec < 10){sec = "0" + sec}
+        if(min < 10){min = "0" + min}
+
         let indexTrackAlbum = itemArray.indexOf(songs);
         const li = document.createElement("li");
         li.className = "liContainer";
@@ -70,11 +75,10 @@ const showItem = (item, itemArray, itemContainer) => {
                             </div>
                             <div id="${songs.id}">                           
                                 <i id="heart" class="bi bi-heart"></i>
-                                <p>00:00</p>
+                                <p>${min}:${sec}</p>
                             </div>
                         `;
         ul.appendChild(li);
-    
         li.addEventListener("click", () =>{
             playTrack(itemArray, indexTrackAlbum, songs)
             backTrack(itemArray, indexTrackAlbum)

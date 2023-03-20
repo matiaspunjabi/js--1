@@ -101,7 +101,7 @@ h2{
     height: 100%;
     width: 100%;
     background-color: rgba(27, 25, 25, 0.37);
-    padding-bottom: 3em;
+    padding-bottom: 5em;
 }
 
 .allTracksContainer::-webkit-scrollbar, .albumContainer::-webkit-scrollbar, .artistContainer::-webkit-scrollbar{
