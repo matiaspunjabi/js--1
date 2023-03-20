@@ -4,7 +4,7 @@ const allTracksContainer = document.querySelector(".allTracksContainer");
 const albumContainer = document.querySelector(".albumContainer"); 
 const artistContainer = document.querySelector(".artistContainer"); 
 const trackContainerFooter = document.querySelector(".trackContainer")
-const songsJson = "../json/songs.json";
+const songsJson = "./json/songs.json";
 
 let indexTrack;
 
