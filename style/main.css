@@ -5,6 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    border-radius: .2em;
+
 }
 
 body{
@@ -84,6 +86,7 @@ header{
 }
 
 
+
 h2{
     padding: .5em;
     text-align: start;
@@ -96,6 +99,8 @@ h2{
 .allTracksContainer, .albumContainer, .artistContainer {
     height: 100%;
     width: 100%;
+    background-color: rgba(27, 25, 25, 0.37);
+    padding-bottom: 3em;
 }
 
 .allTracksContainer::-webkit-scrollbar, .albumContainer::-webkit-scrollbar, .artistContainer::-webkit-scrollbar{
@@ -119,7 +124,6 @@ img{
 }
 
 .liContainer{
-    margin-bottom: .5em;
     height: auto;
     padding: .5em 1em;
     display: flex;
@@ -156,6 +160,7 @@ img{
 footer{
     position: sticky;
     bottom: 0;
+    left: 0;
 }
 
 .footerContainer{
@@ -217,12 +222,12 @@ footer{
 }
 
 .btnContainer .bi{
-    font-size: 1.2em;
+    font-size: 1.5em;
     cursor: pointer;
 }
 
 .btnContainer .bi:nth-child(3){
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 .btnContainer .bi:first-child ,.btnContainer .bi:last-child {
