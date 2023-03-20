@@ -61,7 +61,6 @@ const showItem = (item, itemArray, itemContainer) => {
     ul.className = "playlist";
     itemArray.forEach(songs => {
         let indexTrackAlbum = itemArray.indexOf(songs);
-
         const li = document.createElement("li");
         li.className = "liContainer";
         li.innerHTML =  `
@@ -69,20 +68,20 @@ const showItem = (item, itemArray, itemContainer) => {
                                 <img src="${songs.img}" alt="${songs.title} ${songs.artist}">
                                 <h3>${songs.title}</h3>
                             </div>
-                            <div>                           
+                            <div id="${songs.id}">                           
                                 <i id="heart" class="bi bi-heart"></i>
                                 <p>00:00</p>
                             </div>
                         `;
         ul.appendChild(li);
-
+    
         li.addEventListener("click", () =>{
             playTrack(itemArray, indexTrackAlbum, songs)
             backTrack(itemArray, indexTrackAlbum)
             nextTrack(itemArray, indexTrackAlbum)
-            })
         })
-        
+    })
+
     itemContainer.appendChild(h2);
     itemContainer.appendChild(ul);
 }
@@ -130,6 +129,14 @@ const nextTrack = (itemArray, indexTrackAlbum) =>{
     })
 }
 
+const backTrack = (itemArray, indexTrackAlbum) =>{
+    backwardBtn.addEventListener("click", ()=>{
+        showTrackFooter(itemArray[indexTrackAlbum])
+        mainAudio.src = itemArray[indexTrackAlbum--].mp3;
+        mainAudio.play()
+    })
+}
+
 playBtn.addEventListener("click", ()=>{
     if(playBtn.className === "bi bi-pause"){
         playBtn.className = "bi bi-play"
@@ -140,11 +147,6 @@ playBtn.addEventListener("click", ()=>{
     }
 })
 
-const getTrackDuration = () =>{
-    mainAudio.addEventListener("loadedmetadata", ()=>{
-    })
-}
-
 const menu = document.querySelector(".bi-list");
 const menuList = document.querySelector(".navUl");
 
@@ -153,10 +155,3 @@ menu.addEventListener("click", ()=>{
 })
 
 
-const backTrack = (itemArray, indexTrackAlbum) =>{
-    backwardBtn.addEventListener("click", ()=>{
-        showTrackFooter(itemArray[indexTrackAlbum])
-        mainAudio.src = itemArray[indexTrackAlbum--].mp3;
-        mainAudio.play()
-    })
-}
