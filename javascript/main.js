@@ -24,8 +24,8 @@ fetch(songsJson)
     getAlbums(data, "meteora");
     getAlbums(data, "hybrid theory");
     getAlbums(data, "dead silence");
-    getAlbums(data, "reanimation");
     getAlbums(data, "wasting light");
+    getAlbums(data, "reanimation");
     allAlbumsList.addEventListener("click", ()=>{
         menuList.classList.add("hidden");
         albumContainer.classList.remove("hidden")
@@ -70,16 +70,19 @@ const showItem = (item, itemArray, itemContainer) => {
                                 <h3>${songs.title}</h3>
                             </div>
                             <div>                           
-                                <i class="bi bi-heart"></i>
+                                <i id="heart" class="bi bi-heart"></i>
                                 <p>00:00</p>
                             </div>
                         `;
         ul.appendChild(li);
+
         li.addEventListener("click", () =>{
             playTrack(itemArray, indexTrackAlbum, songs)
-            nexTrack(itemArray, indexTrackAlbum)
+            backTrack(itemArray, indexTrackAlbum)
+            nextTrack(itemArray, indexTrackAlbum)
             })
         })
+        
     itemContainer.appendChild(h2);
     itemContainer.appendChild(ul);
 }
@@ -114,7 +117,12 @@ const playTrack = (itemArray, indexTrackAlbum, songs) =>{
     showTrackFooter(songs)
 }
 
-const nexTrack = (itemArray, indexTrackAlbum) =>{
+const nextTrack = (itemArray, indexTrackAlbum) =>{
+    mainAudio.addEventListener("ended", ()=>{
+        showTrackFooter(itemArray[indexTrackAlbum])
+        mainAudio.src = itemArray[indexTrackAlbum++].mp3
+        mainAudio.play()
+    })
     forwardBtn.addEventListener("click", ()=>{
         showTrackFooter(itemArray[indexTrackAlbum])
         mainAudio.src = itemArray[indexTrackAlbum++].mp3;
@@ -134,7 +142,6 @@ playBtn.addEventListener("click", ()=>{
 
 const getTrackDuration = () =>{
     mainAudio.addEventListener("loadedmetadata", ()=>{
-        console.log(mainAudio.duration)
     })
 }
 
@@ -144,3 +151,12 @@ const menuList = document.querySelector(".navUl");
 menu.addEventListener("click", ()=>{
     menuList.classList.toggle("hidden")
 })
+
+
+const backTrack = (itemArray, indexTrackAlbum) =>{
+    backwardBtn.addEventListener("click", ()=>{
+        showTrackFooter(itemArray[indexTrackAlbum])
+        mainAudio.src = itemArray[indexTrackAlbum--].mp3;
+        mainAudio.play()
+    })
+}

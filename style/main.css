@@ -91,8 +91,9 @@ h2{
     padding: .5em;
     text-align: start;
     font-size: 1.8em;
-    color: rgba(224, 224, 224, 0.753);
+    color: rgb(224, 224, 224);
     background-color: rgb(185, 172, 124);
+    text-shadow: 1px 1px .1em rgb(32, 30, 30);
     position: sticky;
     top: 2.44em;
 }
@@ -147,14 +148,10 @@ img{
     gap: 1em;
 }
 
-.liContainer .bi-heart{
+.liContainer .bi-heart, .liContainer .bi-heart-fill{
     margin-right: 1em;
     font-size: 1.5em;
     color: rgb(185, 172, 124);
-}
-
-.liContainer .bi-heart:hover{
-    background-color: rgb(185, 172, 124);
 }
 
 footer{
